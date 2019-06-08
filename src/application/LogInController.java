@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,21 +14,30 @@ import javafx.stage.Stage;
 
 public class LogInController
 {
-	private Stage primaryStage;
+    private Stage primaryStage;
+
+	private ArrayList<BankAccount> list;
 
 	private @FXML TextField usernameField;
 	private @FXML PasswordField passwordField;
 	private @FXML Button signUpBtn, logInBtn;
-	private @FXML Label incorrectLbl, passwordLbl;
+	private @FXML Label incorrectLbl;
 
 	public LogInController(Stage primaryStage)
 	{
-		this.primaryStage = primaryStage;
+	    this.primaryStage = primaryStage;
+		this.list = new ArrayList<BankAccount>();
 	}
 
 	public void initialize()
 	{
-		signUpBtn.setOnAction(e -> incorrectLbl.setOpacity(1));
+	    logInBtn.setOnAction(e ->
+	    {
+	        HomeController homeController = new HomeController(new BankAccount(usernameField.getText(), passwordField.getText()));
+	        homeController.show(primaryStage);
+	    });
+
+		signUpBtn.setOnAction(e -> list.add(new BankAccount(usernameField.getText(), passwordField.getText())));
 	}
 
 	public void show()

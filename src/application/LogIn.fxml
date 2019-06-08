@@ -47,7 +47,6 @@
             <StackPane>
                <children>
                   <Label fx:id="incorrectLbl" alignment="CENTER" opacity="0.0" text="Incorrect username or password!" textFill="RED" underline="true" />
-                  <Label fx:id="passwordLbl" alignment="CENTER" opacity="0.0" text="Password must contain at least 8 characters" textFill="RED" underline="true" />
                </children>
             </StackPane>
          </children>
