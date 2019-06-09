@@ -87,12 +87,20 @@
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </TextField>
+						      <fx:define>
+                                 <ArrayList fx:id="buttonList">
+                                    <fx:reference source="button10"/>
+     	                            <fx:reference source="button20"/>
+         	                        <fx:reference source="button50"/>
+         	                        <fx:reference source="button100"/>
+               	                    <fx:reference source="button500"/>
+         	                        <fx:reference source="button1000"/>
+         	                        <fx:reference source="button2000"/>
+                                    <fx:reference source="buttonCustom"/>
+                                 </ArrayList>
+                              </fx:define>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" top="5.0" />
-                           </VBox.margin>
                         </HBox>
-
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -103,18 +111,8 @@
                   </VBox>
                </children>
             </HBox>
-            <fx:define>
-               <ArrayList fx:id="buttonList">
-                  <fx:reference source="button10"/>
-     	          <fx:reference source="button20"/>
-      	          <fx:reference source="button50"/>
-      	          <fx:reference source="button100"/>
-      	          <fx:reference source="button500"/>
-      	          <fx:reference source="button1000"/>
-      	          <fx:reference source="button2000"/>
-                  <fx:reference source="buttonCustom"/>
-              </ArrayList>
-            </fx:define>
+            <Label fx:id="insufficientFundslbl" opacity="0.0" text="Insufficient Funds!" textFill="RED" underline="true" />
+
          </children>
       </VBox>
    </top>

@@ -57,7 +57,7 @@ public class LogInController
 	        else
             {
                 HomeController homeController = new HomeController(this.primaryStage, Client.list.get(accountIndex));
-                homeController.show(this.primaryStage);
+                homeController.show();
             }
 	    });
 

@@ -16,8 +16,8 @@ public class HomeController
 
     private Stage primaryStage;
 
-    @FXML private Label welcomeLbl, balanceLbl, depositLbl, withdrawSuccessLbl, withdrawErrorLbl;
-    @FXML private Button signOutBtn, depositBtn, withdrawBtn;
+    @FXML private Label welcomeLbl, balanceLbl, depositLbl, withdrawLbl, transferLbl;
+    @FXML private Button signOutBtn, depositBtn, withdrawBtn, transferBtn;
 
     public HomeController(Stage primaryStage, BankAccount account)
     {
@@ -50,20 +50,26 @@ public class HomeController
             withdrawController.show();
         });
 
+        this.transferBtn.setOnAction(e ->
+        {
+            TransferController transferController = new TransferController(this.primaryStage, this.account);
+            transferController.show();
+        });
+
         this.depositLbl.setOpacity(0);
-        this.withdrawSuccessLbl.setOpacity(0);
-        this.withdrawErrorLbl.setOpacity(0);
+        this.withdrawLbl.setOpacity(0);
+        this.transferLbl.setOpacity(0);
     }
 
-    public void show(Stage primaryStage)
+    public void show()
     {
         try
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
 
             loader.setController(this);
-            primaryStage.setScene(new Scene(loader.load()));
-            primaryStage.centerOnScreen();
+            this.primaryStage.setScene(new Scene(loader.load()));
+            this.primaryStage.centerOnScreen();
         }
         catch(IOException e)
         {
@@ -76,11 +82,13 @@ public class HomeController
         this.depositLbl.setOpacity(1);
     }
 
-    public void previousIsWithdraw(boolean success)
+    public void previousIsWithdraw()
     {
-        if(success)
-            this.withdrawSuccessLbl.setOpacity(1);
-        else
-            this.withdrawErrorLbl.setOpacity(1);
+        this.withdrawLbl.setOpacity(1);
+    }
+
+    public void previousIsSend()
+    {
+        this.transferLbl.setOpacity(1);
     }
 }

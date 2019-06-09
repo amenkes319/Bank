@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,24 +47,25 @@ public class DepositController
                     e1.printStackTrace();
                 }
 
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                Date date = new Date();
+
                 if(!((Button) e.getSource()).getText().equals("Custom"))
                 {
                     this.account.deposit(Double.valueOf(((Button) e.getSource()).getText().substring(1)));
-                    logWriter.println("Deposit " + ((Button) e.getSource()).getText().substring(1));
-                    System.out.println("Deposit " + ((Button) e.getSource()).getText().substring(1));
+                    logWriter.println(dateFormat.format(date) + " Deposit " + ((Button) e.getSource()).getText().substring(1));
                 }
                 else
                 {
                     this.account.deposit(Double.valueOf(this.customField.getText()));
-                    logWriter.println("Deposit " + this.customField.getText());
-                    System.out.println("Deposit " + this.customField.getText());
+                    logWriter.println(dateFormat.format(date) + " Deposit " + this.customField.getText());
                 }
 
                 logWriter.flush();
                 logWriter.close();
 
                 HomeController homeController = new HomeController(primaryStage, account);
-                homeController.show(primaryStage);
+                homeController.show();
                 homeController.previousIsDeposit();
             });
     }

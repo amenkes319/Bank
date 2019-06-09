@@ -5,12 +5,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,6 +24,7 @@ public class WithdrawController
 
     @FXML private ArrayList<Button> buttonList;
     @FXML private TextField customField;
+    @FXML private Label insufficientFundslbl;
 
     private Stage primaryStage;
 
@@ -38,6 +43,9 @@ public class WithdrawController
 
                 PrintWriter logWriter = null;
 
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                Date date = new Date();
+
                 try
                 {
                     logWriter = new PrintWriter(new BufferedWriter(new FileWriter(new File("src\\logs\\" + this.account.getUsername() + "Log.txt"), true)));
@@ -50,23 +58,25 @@ public class WithdrawController
                 if(!((Button) e.getSource()).getText().equals("Custom"))
                 {
                     bSuccess = this.account.withdraw(Double.valueOf(((Button) e.getSource()).getText().substring(1)));
-                    logWriter.println("Withdraw " + ((Button) e.getSource()).getText().substring(1) + " " + (bSuccess ? "Successful" : "Unsuccessful"));
-                    System.out.println("Withdraw " + ((Button) e.getSource()).getText().substring(1) + " " + (bSuccess ? "Successful" : "Unsuccessful"));
-
+                    logWriter.println(dateFormat.format(date) + " Withdraw " + ((Button) e.getSource()).getText().substring(1) + " " + (bSuccess ? "Successful" : "Unsuccessful"));
                 }
                 else
                 {
                     bSuccess = this.account.withdraw(Double.valueOf(this.customField.getText()));
-                    logWriter.println("Withdraw " + this.customField.getText() + " " + (bSuccess ? "Successful" : "Unsuccessful"));
-                    System.out.println("Withdraw " + this.customField.getText() + " " + (bSuccess ? "Successful" : "Unsuccessful"));
+                    logWriter.println(dateFormat.format(date) + " Withdraw " + this.customField.getText() + " " + (bSuccess ? "Successful" : "Unsuccessful"));
                 }
 
                 logWriter.flush();
                 logWriter.close();
 
-                HomeController homeController = new HomeController(this.primaryStage, this.account);
-                homeController.show(this.primaryStage);
-                homeController.previousIsWithdraw(bSuccess);
+                if(bSuccess)
+                {
+                    HomeController homeController = new HomeController(this.primaryStage, this.account);
+                    homeController.show();
+                    homeController.previousIsWithdraw();
+                }
+                else
+                    this.insufficientFundslbl.setOpacity(1);
             });
     }
 
@@ -74,7 +84,7 @@ public class WithdrawController
     {
         try
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Deposit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Withdraw.fxml"));
 
             loader.setController(this);
             this.primaryStage.setScene(new Scene(loader.load()));

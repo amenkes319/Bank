@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" style="-fx-background-color: #282c2f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Who would you like to transfer money to?" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" promptText="Username">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="How much money would you like to send?" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="amountField" promptText="Amount">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="transferBtn" mnemonicParsing="false" text="Transfer">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <StackPane>
+               <children>
+                  <Label fx:id="invalidUsernameLbl" opacity="0.0" text="ERROR! Account not found!" textFill="RED" underline="true" />
+                  <Label fx:id="insufficientFundsLbl" opacity="0.0" text="ERROR! Insufficient Funds!" textFill="RED" underline="true" />
+               </children>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <HBox>
+         <children>
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back" BorderPane.alignment="CENTER">
+               <HBox.margin>
+                  <Insets left="22.5" top="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

@@ -30,11 +30,16 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="transferBtn" mnemonicParsing="false" text="Transfer Money">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
             <StackPane>
                <children>
                   <Label fx:id="depositLbl" opacity="0.0" text="Deposit Successful!" textFill="LIME" />
-                  <Label fx:id="withdrawSuccessLbl" opacity="0.0" text="Withdraw Successful!" textFill="LIME" />
-                  <Label fx:id="withdrawErrorLbl" opacity="0.0" text="ERROR! Insufficient Funds" textFill="RED" />
+                  <Label fx:id="withdrawLbl" opacity="0.0" text="Withdraw Successful!" textFill="LIME" />
+                  <Label fx:id="transferLbl" opacity="0.0" text="Transfer Successful!" textFill="LIME" />
                </children>
             </StackPane>
          </children>
