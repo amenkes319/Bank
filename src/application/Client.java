@@ -89,7 +89,7 @@ public class Client extends Application
 		logIn.show();
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		launch(args);
 	}

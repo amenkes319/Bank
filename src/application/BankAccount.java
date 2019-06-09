@@ -36,15 +36,20 @@ public class BankAccount
 
 	public double getBalance()
 	{
-		return this.balance;
+		return Math.round(this.balance * 100)/100.0; //rounds to hundredth
 	}
 
 	public boolean withdraw(double amount)
 	{
-		if(balance - amount >= 0)
-			this.balance -= amount;
+	    boolean bSuccess = false;
 
-		return this.balance - amount >= 0;
+		if(this.balance - amount >= 0)
+		{
+			this.balance -= amount;
+			bSuccess = true;
+		}
+
+		return bSuccess;
 	}
 
 	public void deposit(double amount)
@@ -54,6 +59,6 @@ public class BankAccount
 
 	public String toString()
 	{
-	    return getUsername() + ", " + getPassword() + ", " + Math.round(getBalance() * 100)/100.0;
+	    return getUsername() + ", " + getPassword() + ", " + getBalance();
 	}
 }

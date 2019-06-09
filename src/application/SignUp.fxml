@@ -6,11 +6,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #282c2f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" text="Welcome to CSA Bank!">
+            <Label alignment="CENTER" text="Welcome to CSA Bank!" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -34,10 +34,9 @@
                </VBox.margin>
             </PasswordField>
             <Button fx:id="signUpBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Sign Up!" />
-            <Button fx:id="testBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="List" />
             <HBox alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" text="Already have an account?">
+                  <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" text="Already have an account?" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="2.5" />
                      </HBox.margin>

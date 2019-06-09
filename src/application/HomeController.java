@@ -16,7 +16,7 @@ public class HomeController
 
     private Stage primaryStage;
 
-    @FXML private Label welcomeLbl, balanceLbl;
+    @FXML private Label welcomeLbl, balanceLbl, depositLbl, withdrawSuccessLbl, withdrawErrorLbl;
     @FXML private Button signOutBtn, depositBtn, withdrawBtn;
 
     public HomeController(Stage primaryStage, BankAccount account)
@@ -28,7 +28,7 @@ public class HomeController
     public void initialize()
     {
         DecimalFormat moneyFormat = new DecimalFormat("$0.00");
-        
+
         this.welcomeLbl.setText("Welcome " + this.account.getUsername() + "!");
         this.balanceLbl.setText("Your balance is " + moneyFormat.format(this.account.getBalance()));
 
@@ -40,15 +40,19 @@ public class HomeController
 
         this.depositBtn.setOnAction(e ->
         {
-            account.deposit(13.15);
-            this.balanceLbl.setText("Your balance is " + moneyFormat.format(this.account.getBalance()));
-            System.out.println(account);
+            DepositController depositController = new DepositController(this.primaryStage, this.account);
+            depositController.show();
         });
-        
+
         this.withdrawBtn.setOnAction(e ->
         {
-            
+            WithdrawController withdrawController = new WithdrawController(this.primaryStage, this.account);
+            withdrawController.show();
         });
+
+        this.depositLbl.setOpacity(0);
+        this.withdrawSuccessLbl.setOpacity(0);
+        this.withdrawErrorLbl.setOpacity(0);
     }
 
     public void show(Stage primaryStage)
@@ -65,5 +69,19 @@ public class HomeController
         {
             e.printStackTrace();
         }
+    }
+
+    public void previousIsDeposit()
+    {
+        this.depositLbl.setOpacity(1);
+    }
+
+    public void previousIsWithdraw(boolean success)
+    {
+        if(success)
+            this.withdrawSuccessLbl.setOpacity(1);
+        else
+            this.withdrawErrorLbl.setOpacity(1);
+        System.out.println(success);
     }
 }

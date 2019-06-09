@@ -28,21 +28,21 @@ public class LogInController
 
 	public void initialize()
 	{
-	    logInBtn.setOnAction(e ->
+	    this.logInBtn.setOnAction(e ->
 	    {
-	        incorrectLbl.setOpacity(0);
+	        this.incorrectLbl.setOpacity(0);
 
 	        boolean isCorrectUsername = false;
 	        boolean isCorrectPassword = false;
-	        
+
 	        int accountIndex = 0;
 
 	        for(int i = 0; i < Client.list.size() && !(isCorrectUsername && isCorrectPassword); i++)
 	        {
-	            if(usernameField.getText().equalsIgnoreCase(Client.list.get(i).getUsername()))
+	            if(this.usernameField.getText().equalsIgnoreCase(Client.list.get(i).getUsername()))
 	            {
 	                isCorrectUsername = true;
-	                if(passwordField.getText().equals(Client.list.get(i).getPassword()))
+	                if(this.passwordField.getText().equals(Client.list.get(i).getPassword()))
 	                {
 	                    isCorrectPassword = true;
 	                    accountIndex = i;
@@ -53,17 +53,17 @@ public class LogInController
 	        }
 
 	        if(!(isCorrectUsername && isCorrectPassword))
-	            incorrectLbl.setOpacity(1);
+	            this.incorrectLbl.setOpacity(1);
 	        else
             {
                 HomeController homeController = new HomeController(this.primaryStage, Client.list.get(accountIndex));
-                homeController.show(primaryStage);
+                homeController.show(this.primaryStage);
             }
 	    });
 
-		signUpBtn.setOnAction(e ->
+		this.signUpBtn.setOnAction(e ->
 		{
-		    SignUpController signUpController = new SignUpController(primaryStage);
+		    SignUpController signUpController = new SignUpController(this.primaryStage);
 		    signUpController.show();
 		});
 	}
