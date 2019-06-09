@@ -16,8 +16,6 @@ public class LogInController
 {
     private Stage primaryStage;
 
-	private ArrayList<BankAccount> list;
-
 	private @FXML TextField usernameField;
 	private @FXML PasswordField passwordField;
 	private @FXML Button signUpBtn, logInBtn;
@@ -26,18 +24,48 @@ public class LogInController
 	public LogInController(Stage primaryStage)
 	{
 	    this.primaryStage = primaryStage;
-		this.list = new ArrayList<BankAccount>();
 	}
 
 	public void initialize()
 	{
 	    logInBtn.setOnAction(e ->
 	    {
-	        HomeController homeController = new HomeController(new BankAccount(usernameField.getText(), passwordField.getText()));
-	        homeController.show(primaryStage);
+	        incorrectLbl.setOpacity(0);
+
+	        boolean isCorrectUsername = false;
+	        boolean isCorrectPassword = false;
+	        
+	        int accountIndex = 0;
+
+	        for(int i = 0; i < Client.list.size() && !(isCorrectUsername && isCorrectPassword); i++)
+	        {
+	            if(usernameField.getText().equalsIgnoreCase(Client.list.get(i).getUsername()))
+	            {
+	                isCorrectUsername = true;
+	                if(passwordField.getText().equals(Client.list.get(i).getPassword()))
+	                {
+	                    isCorrectPassword = true;
+	                    accountIndex = i;
+	                }
+	                else
+	                    isCorrectUsername = false;
+	            }
+	        }
+
+	        if(!(isCorrectUsername && isCorrectPassword))
+	            incorrectLbl.setOpacity(1);
+	        else
+            {
+                HomeController homeController = new HomeController(this.primaryStage, Client.list.get(accountIndex));
+                homeController.show(primaryStage);
+            }
 	    });
 
-		signUpBtn.setOnAction(e -> list.add(new BankAccount(usernameField.getText(), passwordField.getText())));
+		signUpBtn.setOnAction(e ->
+		{
+		    SignUpController signUpController = new SignUpController(primaryStage);
+		    signUpController.show();
+		});
 	}
 
 	public void show()

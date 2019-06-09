@@ -33,7 +33,8 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </PasswordField>
-            <Button fx:id="logInBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Sign Up!" />
+            <Button fx:id="signUpBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Sign Up!" />
+            <Button fx:id="testBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="List" />
             <HBox alignment="CENTER">
                <children>
                   <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" text="Already have an account?">
@@ -41,7 +42,7 @@
                         <Insets right="2.5" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="signUpBtn" mnemonicParsing="false" text="Log In!">
+                  <Button fx:id="logInBtn" mnemonicParsing="false" text="Log In!">
                      <HBox.margin>
                         <Insets left="2.5" />
                      </HBox.margin>
@@ -50,9 +51,9 @@
             </HBox>
             <StackPane>
                <children>
-                  <Label fx:id="incorrectLbl" alignment="CENTER" opacity="0.0" text="Username unavailable!" textFill="RED" underline="true" />
-                  <Label fx:id="passwordLbl" alignment="CENTER" opacity="0.0" text="Password must contain at least 8 characters" textFill="RED" underline="true" />
-                  <Label fx:id="passwordLbl1" alignment="CENTER" opacity="0.0" text="Passwords must match!" textFill="RED" underline="true" />
+                  <Label fx:id="usernameUnavailableLbl" alignment="CENTER" opacity="0.0" text="Username unavailable!" textFill="RED" underline="true" />
+                  <Label fx:id="notEnoughCharactersLbl" alignment="CENTER" opacity="0.0" text="Password must contain at least 8 characters" textFill="RED" underline="true" />
+                  <Label fx:id="notMatchingPasswordLbl" alignment="CENTER" opacity="0.0" text="Passwords must match!" textFill="RED" underline="true" />
                </children>
             </StackPane>
          </children>
