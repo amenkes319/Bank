@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -49,7 +50,16 @@ public class SignUpController
                 this.notMatchingPasswordLbl.setOpacity(1);
             else
             {
-                System.out.println("Sign up successful");
+                File log = new File("src\\logs\\" + usernameField.getText() + "Log.txt");
+                try
+                {
+                    log.createNewFile();
+                }
+                catch (IOException exception)
+                {
+                    System.out.println("File not created!");
+                }
+
                 Client.list.add(new BankAccount(this.usernameField.getText(), this.passwordField.getText()));
 
                 LogInController logInController = new LogInController(this.primaryStage);

@@ -1,6 +1,10 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -30,10 +34,31 @@ public class DepositController
         for(int i = 0; i < this.buttonList.size(); i++)
             this.buttonList.get(i).setOnAction(e ->
             {
+                PrintWriter logWriter = null;
+                try
+                {
+                    logWriter = new PrintWriter(new BufferedWriter(new FileWriter(new File("src\\logs\\" + this.account.getUsername() + "Log.txt"), true)));
+                }
+                catch(IOException e1)
+                {
+                    e1.printStackTrace();
+                }
+
                 if(!((Button) e.getSource()).getText().equals("Custom"))
+                {
                     this.account.deposit(Double.valueOf(((Button) e.getSource()).getText().substring(1)));
+                    logWriter.println("Deposit " + ((Button) e.getSource()).getText().substring(1));
+                    System.out.println("Deposit " + ((Button) e.getSource()).getText().substring(1));
+                }
                 else
+                {
                     this.account.deposit(Double.valueOf(this.customField.getText()));
+                    logWriter.println("Deposit " + this.customField.getText());
+                    System.out.println("Deposit " + this.customField.getText());
+                }
+
+                logWriter.flush();
+                logWriter.close();
 
                 HomeController homeController = new HomeController(primaryStage, account);
                 homeController.show(primaryStage);

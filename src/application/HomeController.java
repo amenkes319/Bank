@@ -82,6 +82,5 @@ public class HomeController
             this.withdrawSuccessLbl.setOpacity(1);
         else
             this.withdrawErrorLbl.setOpacity(1);
-        System.out.println(success);
     }
 }

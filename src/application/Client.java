@@ -44,7 +44,6 @@ public class Client extends Application
     {
         try
         {
-            System.out.println(account.getUsername() + ": " + account.getBalance());
             PrintWriter data = new PrintWriter(new BufferedWriter(new FileWriter(newFile, true)));
             data.println(account.getUsername() + "," + account.getPassword() + "," + account.getBalance() + ",");
 

@@ -1,6 +1,10 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -32,10 +36,33 @@ public class WithdrawController
             {
                 boolean bSuccess;
 
+                PrintWriter logWriter = null;
+
+                try
+                {
+                    logWriter = new PrintWriter(new BufferedWriter(new FileWriter(new File("src\\logs\\" + this.account.getUsername() + "Log.txt"), true)));
+                }
+                catch(IOException e1)
+                {
+                    e1.printStackTrace();
+                }
+
                 if(!((Button) e.getSource()).getText().equals("Custom"))
+                {
                     bSuccess = this.account.withdraw(Double.valueOf(((Button) e.getSource()).getText().substring(1)));
+                    logWriter.println("Withdraw " + ((Button) e.getSource()).getText().substring(1) + " " + (bSuccess ? "Successful" : "Unsuccessful"));
+                    System.out.println("Withdraw " + ((Button) e.getSource()).getText().substring(1) + " " + (bSuccess ? "Successful" : "Unsuccessful"));
+
+                }
                 else
+                {
                     bSuccess = this.account.withdraw(Double.valueOf(this.customField.getText()));
+                    logWriter.println("Withdraw " + this.customField.getText() + " " + (bSuccess ? "Successful" : "Unsuccessful"));
+                    System.out.println("Withdraw " + this.customField.getText() + " " + (bSuccess ? "Successful" : "Unsuccessful"));
+                }
+
+                logWriter.flush();
+                logWriter.close();
 
                 HomeController homeController = new HomeController(this.primaryStage, this.account);
                 homeController.show(this.primaryStage);
