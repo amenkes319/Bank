@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #282c2f;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
+   <center>
       <VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Select the amount you wish to withdraw!" textFill="WHITE">
@@ -100,6 +100,9 @@
                                  </ArrayList>
                               </fx:define>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <opaqueInsets>
@@ -114,6 +117,23 @@
             <Label fx:id="insufficientFundslbl" opacity="0.0" text="Insufficient Funds!" textFill="RED" underline="true" />
 
          </children>
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
       </VBox>
+   </center>
+   <top>
+      <HBox prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backBtn" mnemonicParsing="false" text="Back">
+               <HBox.margin>
+                  <Insets left="15.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
    </top>
 </BorderPane>
