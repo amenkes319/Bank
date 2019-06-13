@@ -67,6 +67,12 @@ public class SignUpController
 
             }
         });
+
+        logInBtn.setOnAction(e ->
+        {
+            LogInController logInController = new LogInController(primaryStage);
+            logInController.show();
+        });
     }
 
     public void show()
