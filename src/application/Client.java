@@ -27,7 +27,7 @@ public class Client extends Application
             while(scanner.hasNextLine())
             {
                 String[] data = scanner.nextLine().split(",");
-                list.add(new BankAccount(data[0], data[1], Double.valueOf(data[2])));
+                list.add(new BankAccount(new String(Crypto.decrypt(data[0].getBytes())), new String(Crypto.decrypt(data[1].getBytes())), Double.valueOf(new String(Crypto.decrypt(data[2].getBytes())))));
             }
 
             scanner.close();
@@ -45,7 +45,7 @@ public class Client extends Application
         try
         {
             PrintWriter data = new PrintWriter(new BufferedWriter(new FileWriter(newFile, true)));
-            data.println(account.getUsername() + "," + account.getPassword() + "," + account.getBalance() + ",");
+            data.println(new String(Crypto.encrypt(account.getUsername().getBytes())) + "," + new String(Crypto.encrypt(account.getPassword().getBytes())) + "," + new String(Crypto.encrypt(String.valueOf(account.getBalance()).getBytes())) + ",");
 
             data.flush();
             data.close();
