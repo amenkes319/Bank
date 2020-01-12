@@ -14,11 +14,11 @@ import javafx.stage.Stage;
 
 public class Client extends Application
 {
-    public static ArrayList<BankAccount> list;
+    public static ArrayList<BankAccount> userList;
 
     public Client()
     {
-        list = new ArrayList<BankAccount>();
+    	userList = new ArrayList<BankAccount>();
 
         try
         {
@@ -27,7 +27,7 @@ public class Client extends Application
             while(scanner.hasNextLine())
             {
                 String[] data = scanner.nextLine().split(",");
-                list.add(new BankAccount(new String(Crypto.decrypt(data[0].getBytes())), new String(Crypto.decrypt(data[1].getBytes())), Double.valueOf(new String(Crypto.decrypt(data[2].getBytes())))));
+                userList.add(new BankAccount(new String(Crypto.decrypt(data[0].getBytes())), new String(Crypto.decrypt(data[1].getBytes())), Double.valueOf(new String(Crypto.decrypt(data[2].getBytes())))));
             }
 
             scanner.close();
@@ -37,7 +37,7 @@ public class Client extends Application
             System.out.println("File not found!");
         }
 
-        System.out.println(list.size());
+        System.out.println(userList.size());
     }
 
     public static void saveAccount(BankAccount account, File newFile)
@@ -78,7 +78,7 @@ public class Client extends Application
 		        System.out.println("File not found!");
             }
 
-		    for(BankAccount account : list)
+		    for(BankAccount account : userList)
 		        saveAccount(account, dataFile);
 
 		    System.out.println("Storing complete");

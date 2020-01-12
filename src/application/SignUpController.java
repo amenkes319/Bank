@@ -36,9 +36,9 @@ public class SignUpController
 
             boolean bUsesUsername = false;
 
-            for(int i = 0; i < Client.list.size(); i++)
+            for(int i = 0; i < Client.userList.size(); i++)
             {
-                if(this.usernameField.getText().equalsIgnoreCase(Client.list.get(i).getUsername()))
+                if(this.usernameField.getText().equalsIgnoreCase(Client.userList.get(i).getUsername()))
                      bUsesUsername = true;
             }
 
@@ -60,7 +60,7 @@ public class SignUpController
                     System.out.println("File not created!");
                 }
 
-                Client.list.add(new BankAccount(this.usernameField.getText(), this.passwordField.getText()));
+                Client.userList.add(new BankAccount(this.usernameField.getText(), this.passwordField.getText()));
 
                 LogInController logInController = new LogInController(this.primaryStage);
                 logInController.show();

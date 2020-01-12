@@ -65,7 +65,7 @@ public class TransferController
             {
                 boolean bValidUsername = false;
 
-                for(BankAccount account : Client.list)
+                for(BankAccount account : Client.userList)
                 {
                     if(this.usernameField.getText().equalsIgnoreCase(account.getUsername()))
                     {

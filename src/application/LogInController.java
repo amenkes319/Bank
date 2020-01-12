@@ -37,12 +37,12 @@ public class LogInController
 
 	        int accountIndex = 0;
 
-	        for(int i = 0; i < Client.list.size() && !(isCorrectUsername && isCorrectPassword); i++)
+	        for(int i = 0; i < Client.userList.size() && !(isCorrectUsername && isCorrectPassword); i++)
 	        {
-	            if(this.usernameField.getText().equalsIgnoreCase(Client.list.get(i).getUsername()))
+	            if(this.usernameField.getText().equalsIgnoreCase(Client.userList.get(i).getUsername()))
 	            {
 	                isCorrectUsername = true;
-	                if(this.passwordField.getText().equals(Client.list.get(i).getPassword()))
+	                if(this.passwordField.getText().equals(Client.userList.get(i).getPassword()))
 	                {
 	                    isCorrectPassword = true;
 	                    accountIndex = i;
@@ -56,7 +56,7 @@ public class LogInController
 	            this.incorrectLbl.setOpacity(1);
 	        else
             {
-                HomeController homeController = new HomeController(this.primaryStage, Client.list.get(accountIndex));
+                HomeController homeController = new HomeController(this.primaryStage, Client.userList.get(accountIndex));
                 homeController.show();
             }
 	    });
